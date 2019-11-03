@@ -1,8 +1,10 @@
 class SceneController {
 	private container: egret.DisplayObjectContainer;
 	private startScene: StartScene;
+	private gameScene: GameScene;
 	public constructor() {
 		this.startScene = new StartScene();
+		this.gameScene = new GameScene();
 	}
 
 	private static _instance: SceneController;
@@ -14,7 +16,15 @@ class SceneController {
 		this.container = s;
 	}
 
-    public  start(){
+	public start() {
 		this.container.addChild(this.startScene);
+	}
+
+	public game() {
+		if (this.startScene.parent) {
+			this.container.removeChild(this.startScene);
+		}
+
+		this.container.addChild(this.gameScene);
 	}
 }

@@ -4,6 +4,7 @@ var __reflect = (this && this.__reflect) || function (p, c, t) {
 var SceneController = (function () {
     function SceneController() {
         this.startScene = new StartScene();
+        this.gameScene = new GameScene();
     }
     Object.defineProperty(SceneController, "Instance", {
         get: function () {
@@ -18,7 +19,12 @@ var SceneController = (function () {
     SceneController.prototype.start = function () {
         this.container.addChild(this.startScene);
     };
+    SceneController.prototype.game = function () {
+        if (this.startScene.parent) {
+            this.container.removeChild(this.startScene);
+        }
+        this.container.addChild(this.gameScene);
+    };
     return SceneController;
 }());
 __reflect(SceneController.prototype, "SceneController");
-//# sourceMappingURL=SceneController.js.map
