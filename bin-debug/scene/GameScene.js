@@ -29,6 +29,11 @@ var GameScene = (function (_super) {
         this.bg2.height = this.stage.stageHeight;
         this.bg2.x = this.bg1.width;
         this.start();
+        var display = DragonBonesUtil.createDisplay("Rooster_Ani_ske_json", "Rooster_Ani_tex_json", "Rooster_Ani_tex_png", "armatureName");
+        this.addChild(display);
+        display.x = this.stage.stageWidth / 2;
+        display.y = this.stage.stageHeight / 2;
+        display.animation.play("rooster_run_anim").timeScale = 2;
     };
     GameScene.prototype.upSpeed = function () {
         console.log("upSpeed");

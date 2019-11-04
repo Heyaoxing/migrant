@@ -25,6 +25,12 @@ class GameScene extends egret.DisplayObjectContainer {
 
 		this.start();
 
+        var display= DragonBonesUtil.createDisplay("Rooster_Ani_ske_json","Rooster_Ani_tex_json","Rooster_Ani_tex_png","armatureName");
+		this.addChild(display);
+		display.x=this.stage.stageWidth/2;
+		display.y=this.stage.stageHeight/2;
+		display.animation.play("rooster_run_anim").timeScale=2;
+
 	}
 
 	public upSpeed() {
