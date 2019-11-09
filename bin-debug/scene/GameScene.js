@@ -19,11 +19,11 @@ var GameScene = (function (_super) {
         return _this;
     }
     GameScene.prototype.initView = function () {
-        this.bg1 = GameUtil.createBitmapByName("migrant-game-bg_jpg");
+        this.bg1 = GameUtil.createBitmapByName("bg-winter_png");
         this.addChild(this.bg1);
         this.bg1.width = this.stage.stageWidth;
         this.bg1.height = this.stage.stageHeight;
-        this.bg2 = GameUtil.createBitmapByName("migrant-game-bg_jpg");
+        this.bg2 = GameUtil.createBitmapByName("bg-winter_png");
         this.addChild(this.bg2);
         this.bg2.width = this.stage.stageWidth;
         this.bg2.height = this.stage.stageHeight;
@@ -33,7 +33,8 @@ var GameScene = (function (_super) {
         this.addChild(display);
         display.x = this.stage.stageWidth / 2;
         display.y = this.stage.stageHeight / 2;
-        display.animation.play("rooster_run_anim").timeScale = 2;
+        display.skewY = 180; //设置skewX 为180，图片将垂直翻转180度，若设置skewY 为180，图片将水平翻转180度
+        display.animation.play("rooster_walk_anim").timeScale = 0.3;
     };
     GameScene.prototype.upSpeed = function () {
         console.log("upSpeed");
