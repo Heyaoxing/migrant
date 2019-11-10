@@ -24,6 +24,10 @@ var GameData = (function () {
        * 方向转盘y坐标
        */
     GameData.OPERA_Y = 640 - GameData.OPERA_AREA + 50;
+    /**
+     * 鸟的速度
+     */
+    GameData.BIRD_SPEED = 10;
     return GameData;
 }());
 __reflect(GameData.prototype, "GameData");

@@ -2,7 +2,7 @@ class DirectionOperate extends egret.DisplayObjectContainer {
 	public area: egret.Sprite;
 	private orientation_png: egret.Bitmap;
 	private orientationPath_png: egret.Bitmap;
-
+	private operaObjects: OperaObject[];
 	public constructor() {
 		super();
 		this.area = new egret.Sprite();
@@ -14,7 +14,7 @@ class DirectionOperate extends egret.DisplayObjectContainer {
 
 	private onAddToStage(event: egret.Event) {
 
-
+		this.operaObjects = [];
 		this.area.graphics.beginFill(0x00ff00, 0);
 		this.area.graphics.drawCircle(0, 0, GameData.OPERA_AREA);
 		this.area.graphics.endFill();
@@ -46,6 +46,9 @@ class DirectionOperate extends egret.DisplayObjectContainer {
 	private onTouchBegin(event: egret.TouchEvent) {
 		this.orientationPath_png.alpha = 1;
 		this.operationMove(event);
+		this.isSpeedUp = true;
+		egret.ticker.$startTick(this.onMove, this);
+
 	}
 
 	private onTouch(event: egret.TouchEvent) {
@@ -54,12 +57,20 @@ class DirectionOperate extends egret.DisplayObjectContainer {
 
 	private onTouchEnd(event: egret.TouchEvent) {
 		this.orientationPath_png.alpha = 0;
+		this.quicken = 5;
+		egret.ticker.$stopTick(this.onMove, this);
+		this.inFront();
 	}
 
 	private operationMove(event: egret.TouchEvent) {
 		var _end = new egret.Point(event.$stageX, event.$stageY);
 		var rotation = this.getAngelByUI(this._start, _end) - 45;
-		this.orientationPath_png.rotation = rotation
+		this.orientationPath_png.rotation = rotation;
+		this.rotationMove = rotation + 45;
+	}
+
+	public addOperaObject(operaObject: OperaObject) {
+		this.operaObjects.push(operaObject);
 	}
 
 	/**
@@ -83,6 +94,35 @@ class DirectionOperate extends egret.DisplayObjectContainer {
 			return (Math.atan(Math.abs(point.y / point.x)) + Math.PI) * (180 / Math.PI);
 		}
 		return 0;
+	}
 
+	private rotationMove: number;
+	private quicken: number = 5;
+	private isSpeedUp: boolean = true;
+    /**
+	 * 极坐标转换直角坐标
+	 * 用于轮盘移动游戏对象
+	 */
+	private onMove(timeStamp: number): boolean {
+		if (this.quicken >= 25) {
+			this.isSpeedUp = false;
+		}
+
+		if (this.isSpeedUp) {
+			this.quicken = this.quicken + 5;
+		} 
+		let x = this.quicken * Math.cos(this.rotationMove * Math.PI / 180);
+		let y = this.quicken * Math.sin(this.rotationMove * Math.PI / 180);
+		console.log( this.rotationMove);
+		for (let obj of this.operaObjects) {
+			obj.toMove(x, y, this.rotationMove);
+		}
+		return true;
+	}
+
+	private inFront() {
+		for (let obj of this.operaObjects) {
+			obj.toMove(0, 0, 0);
+		}
 	}
 }

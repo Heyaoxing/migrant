@@ -23,6 +23,22 @@ var Bird = (function (_super) {
         this.display.skewY = 180; //设置skewX 为180，图片将垂直翻转180度，若设置skewY 为180，图片将水平翻转180度
         this.display.animation.play("rooster_walk_anim").timeScale = 0.3;
     };
+    /**
+     * 移动坐标
+     */
+    Bird.prototype.toMove = function (x, y, rotation) {
+        this.display.x += x;
+        this.display.y += y;
+        if (rotation > 45 || rotation < -45) {
+            rotation = 0;
+        }
+        this.display.rotation = rotation;
+    };
+    /**
+     * 更新
+     */
+    Bird.prototype.update = function (timeStamp) {
+    };
     return Bird;
-}(egret.DisplayObjectContainer));
+}(OperaObject));
 __reflect(Bird.prototype, "Bird");

@@ -31,8 +31,11 @@ var GameScene = (function (_super) {
         this.bg2.x = this.bg1.width;
         this.operation = new DirectionOperate();
         this.addChild(this.operation);
-        this.start();
         this.addChild(this.bird);
+        this.operation.addOperaObject(this.bird);
+        this.bird.scaleX = 0.2;
+        this.bird.scaleY = 0.2;
+        this.start();
     };
     GameScene.prototype.upSpeed = function () {
         GameData.speed = GameData.upSpeed;

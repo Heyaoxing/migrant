@@ -13,11 +13,14 @@ var DirectionOperate = (function (_super) {
     function DirectionOperate() {
         var _this = _super.call(this) || this;
         _this._start = new egret.Point(GameData.OPERA_X, GameData.OPERA_Y);
+        _this.quicken = 5;
+        _this.isSpeedUp = true;
         _this.area = new egret.Sprite();
         _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
         return _this;
     }
     DirectionOperate.prototype.onAddToStage = function (event) {
+        this.operaObjects = [];
         this.area.graphics.beginFill(0x00ff00, 0);
         this.area.graphics.drawCircle(0, 0, GameData.OPERA_AREA);
         this.area.graphics.endFill();
@@ -40,17 +43,26 @@ var DirectionOperate = (function (_super) {
     DirectionOperate.prototype.onTouchBegin = function (event) {
         this.orientationPath_png.alpha = 1;
         this.operationMove(event);
+        this.isSpeedUp = true;
+        egret.ticker.$startTick(this.onMove, this);
     };
     DirectionOperate.prototype.onTouch = function (event) {
         this.operationMove(event);
     };
     DirectionOperate.prototype.onTouchEnd = function (event) {
         this.orientationPath_png.alpha = 0;
+        this.quicken = 5;
+        egret.ticker.$stopTick(this.onMove, this);
+        this.inFront();
     };
     DirectionOperate.prototype.operationMove = function (event) {
         var _end = new egret.Point(event.$stageX, event.$stageY);
         var rotation = this.getAngelByUI(this._start, _end) - 45;
         this.orientationPath_png.rotation = rotation;
+        this.rotationMove = rotation + 45;
+    };
+    DirectionOperate.prototype.addOperaObject = function (operaObject) {
+        this.operaObjects.push(operaObject);
     };
     /**
      * 获取DirectX坐标系弧度
@@ -78,6 +90,32 @@ var DirectionOperate = (function (_super) {
             return (Math.atan(Math.abs(point.y / point.x)) + Math.PI) * (180 / Math.PI);
         }
         return 0;
+    };
+    /**
+     * 极坐标转换直角坐标
+     * 用于轮盘移动游戏对象
+     */
+    DirectionOperate.prototype.onMove = function (timeStamp) {
+        if (this.quicken >= 25) {
+            this.isSpeedUp = false;
+        }
+        if (this.isSpeedUp) {
+            this.quicken = this.quicken + 5;
+        }
+        var x = this.quicken * Math.cos(this.rotationMove * Math.PI / 180);
+        var y = this.quicken * Math.sin(this.rotationMove * Math.PI / 180);
+        console.log(this.rotationMove);
+        for (var _i = 0, _a = this.operaObjects; _i < _a.length; _i++) {
+            var obj = _a[_i];
+            obj.toMove(x, y, this.rotationMove);
+        }
+        return true;
+    };
+    DirectionOperate.prototype.inFront = function () {
+        for (var _i = 0, _a = this.operaObjects; _i < _a.length; _i++) {
+            var obj = _a[_i];
+            obj.toMove(0, 0, 0);
+        }
     };
     return DirectionOperate;
 }(egret.DisplayObjectContainer));

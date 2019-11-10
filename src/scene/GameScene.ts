@@ -1,7 +1,7 @@
 class GameScene extends egret.DisplayObjectContainer {
 	public constructor() {
 		super();
-		this.bird=new Bird();
+		this.bird = new Bird();
 		this.addEventListener(egret.Event.ADDED_TO_STAGE, this.initView, this);
 		this.touchEnabled = true;
 		this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.upSpeed, this);
@@ -11,7 +11,7 @@ class GameScene extends egret.DisplayObjectContainer {
 
 	private bg1: egret.Bitmap;
 	private bg2: egret.Bitmap;
-	private bird:Bird;
+	private bird: Bird;
 	private operation: DirectionOperate;
 	public initView() {
 		this.bg1 = GameUtil.createBitmapByName("bg-winter_png");
@@ -28,9 +28,14 @@ class GameScene extends egret.DisplayObjectContainer {
 
 		this.operation = new DirectionOperate();
 		this.addChild(this.operation);
-		this.start();
 
 		this.addChild(this.bird);
+		this.operation.addOperaObject(this.bird);
+
+		this.bird.scaleX = 0.2;
+		this.bird.scaleY = 0.2;
+		this.start();
+
 	}
 
 	public upSpeed() {

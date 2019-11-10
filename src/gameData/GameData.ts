@@ -16,10 +16,15 @@ class GameData {
     /**
        * 方向转盘x坐标
        */
-    static OPERA_X = GameData.OPERA_AREA-50;
+    static OPERA_X = GameData.OPERA_AREA - 50;
     /**
        * 方向转盘y坐标
        */
-    static OPERA_Y = 640-GameData.OPERA_AREA+50;
+    static OPERA_Y = 640 - GameData.OPERA_AREA + 50;
+
+    /**
+     * 鸟的速度
+     */
+    static BIRD_SPEED = 10;
 
 }
