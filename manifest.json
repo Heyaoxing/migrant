@@ -11,16 +11,18 @@
 		"libs/egretmgobe/egretmgobe.js"
 	],
 	"game": [
-		"bin-debug/common/GameUtil.js",
+		"bin-debug/component/DirectionOperate.js",
 		"bin-debug/AssetAdapter.js",
 		"bin-debug/Main.js",
 		"bin-debug/Platform.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/common/DragonBonesUtil.js",
+		"bin-debug/common/GameUtil.js",
 		"bin-debug/LoadingUI.js",
 		"bin-debug/component/StartBtn.js",
 		"bin-debug/controller/SceneController.js",
 		"bin-debug/gameData/GameData.js",
+		"bin-debug/gameObject/Bird.js",
 		"bin-debug/scene/GameScene.js",
 		"bin-debug/scene/StartScene.js"
 	]

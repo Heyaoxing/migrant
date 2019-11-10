@@ -12,6 +12,7 @@ var GameScene = (function (_super) {
     __extends(GameScene, _super);
     function GameScene() {
         var _this = _super.call(this) || this;
+        _this.bird = new Bird();
         _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.initView, _this);
         _this.touchEnabled = true;
         _this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, _this.upSpeed, _this);
@@ -28,20 +29,15 @@ var GameScene = (function (_super) {
         this.bg2.width = this.stage.stageWidth;
         this.bg2.height = this.stage.stageHeight;
         this.bg2.x = this.bg1.width;
+        this.operation = new DirectionOperate();
+        this.addChild(this.operation);
         this.start();
-        var display = DragonBonesUtil.createDisplay("Rooster_Ani_ske_json", "Rooster_Ani_tex_json", "Rooster_Ani_tex_png", "armatureName");
-        this.addChild(display);
-        display.x = this.stage.stageWidth / 2;
-        display.y = this.stage.stageHeight / 2;
-        display.skewY = 180; //设置skewX 为180，图片将垂直翻转180度，若设置skewY 为180，图片将水平翻转180度
-        display.animation.play("rooster_walk_anim").timeScale = 0.3;
+        this.addChild(this.bird);
     };
     GameScene.prototype.upSpeed = function () {
-        console.log("upSpeed");
         GameData.speed = GameData.upSpeed;
     };
     GameScene.prototype.normalSpeed = function () {
-        console.log("normalSpeed");
         GameData.speed = GameData.normalSpeed;
     };
     GameScene.prototype.start = function () {

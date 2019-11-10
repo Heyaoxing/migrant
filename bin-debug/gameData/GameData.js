@@ -8,6 +8,22 @@ var GameData = (function () {
     GameData.normalSpeed = 2;
     GameData.upSpeed = 10;
     GameData.speed = 2;
+    /**
+     * 方向转盘操作大小
+     */
+    GameData.OPERA_SIZE = 80;
+    /**
+     * 方向转盘操作范围
+     */
+    GameData.OPERA_AREA = 250;
+    /**
+       * 方向转盘x坐标
+       */
+    GameData.OPERA_X = GameData.OPERA_AREA - 50;
+    /**
+       * 方向转盘y坐标
+       */
+    GameData.OPERA_Y = 640 - GameData.OPERA_AREA + 50;
     return GameData;
 }());
 __reflect(GameData.prototype, "GameData");

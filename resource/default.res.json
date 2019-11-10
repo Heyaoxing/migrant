@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,migrant-start-bg_png,migrant-start-bg_jpg,migrant-game-bg_jpg,Rooster_Ani_ske_json,Rooster_Ani_tex_json,Rooster_Ani_tex_png,groundLayer1_png,bg-winter_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,migrant-start-bg_png,migrant-start-bg_jpg,migrant-game-bg_jpg,Rooster_Ani_ske_json,Rooster_Ani_tex_json,Rooster_Ani_tex_png,groundLayer1_png,bg-winter_png,operation_png,operation-path_png",
 			"name": "preload"
 		}
 	],
@@ -175,6 +175,16 @@
 			"name": "bg-winter_png",
 			"type": "image",
 			"url": "assets/background/bg-winter.png"
+		},
+		{
+			"name": "operation_png",
+			"type": "image",
+			"url": "assets/background/operation.png"
+		},
+		{
+			"name": "operation-path_png",
+			"type": "image",
+			"url": "assets/background/operation-path.png"
 		}
 	]
 }
