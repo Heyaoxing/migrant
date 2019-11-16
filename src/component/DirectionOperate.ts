@@ -57,7 +57,7 @@ class DirectionOperate extends egret.DisplayObjectContainer {
 
 	private onTouchEnd(event: egret.TouchEvent) {
 		this.orientationPath_png.alpha = 0;
-		this.quicken = 5;
+		this.quicken =  GameData.BIRD_SPEED;
 		egret.ticker.$stopTick(this.onMove, this);
 		this.inFront();
 	}
@@ -97,19 +97,19 @@ class DirectionOperate extends egret.DisplayObjectContainer {
 	}
 
 	private rotationMove: number;
-	private quicken: number = 5;
+	private quicken: number = GameData.BIRD_SPEED;
 	private isSpeedUp: boolean = true;
     /**
 	 * 极坐标转换直角坐标
 	 * 用于轮盘移动游戏对象
 	 */
 	private onMove(timeStamp: number): boolean {
-		if (this.quicken >= 25) {
+		if (this.quicken >= GameData.BIRD_SPEED*5) {
 			this.isSpeedUp = false;
 		}
 
 		if (this.isSpeedUp) {
-			this.quicken = this.quicken + 5;
+			this.quicken = this.quicken +  GameData.BIRD_SPEED;
 		} 
 		let x = this.quicken * Math.cos(this.rotationMove * Math.PI / 180);
 		let y = this.quicken * Math.sin(this.rotationMove * Math.PI / 180);

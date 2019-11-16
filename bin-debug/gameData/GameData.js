@@ -27,7 +27,7 @@ var GameData = (function () {
     /**
      * 鸟的速度
      */
-    GameData.BIRD_SPEED = 10;
+    GameData.BIRD_SPEED = 3;
     return GameData;
 }());
 __reflect(GameData.prototype, "GameData");

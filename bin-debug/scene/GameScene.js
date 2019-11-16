@@ -15,26 +15,17 @@ var GameScene = (function (_super) {
         _this.bird = new Bird();
         _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.initView, _this);
         _this.touchEnabled = true;
-        _this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, _this.upSpeed, _this);
-        _this.addEventListener(egret.TouchEvent.TOUCH_END, _this.normalSpeed, _this);
         return _this;
+        // this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.upSpeed, this);
+        // this.addEventListener(egret.TouchEvent.TOUCH_END, this.normalSpeed, this);
     }
     GameScene.prototype.initView = function () {
-        this.bg1 = GameUtil.createBitmapByName("bg-winter_png");
-        this.addChild(this.bg1);
-        this.bg1.width = this.stage.stageWidth;
-        this.bg1.height = this.stage.stageHeight;
-        this.bg2 = GameUtil.createBitmapByName("bg-winter_png");
-        this.addChild(this.bg2);
-        this.bg2.width = this.stage.stageWidth;
-        this.bg2.height = this.stage.stageHeight;
-        this.bg2.x = this.bg1.width;
+        this.backgroud = new BackgroundObject();
+        this.addChild(this.backgroud);
         this.operation = new DirectionOperate();
         this.addChild(this.operation);
         this.addChild(this.bird);
         this.operation.addOperaObject(this.bird);
-        this.bird.scaleX = 0.2;
-        this.bird.scaleY = 0.2;
         this.start();
     };
     GameScene.prototype.upSpeed = function () {
@@ -50,14 +41,7 @@ var GameScene = (function (_super) {
         egret.ticker.$stopTick(this.update, this);
     };
     GameScene.prototype.update = function (timeStamp) {
-        if (this.bg1.x + this.bg1.width <= 0) {
-            this.bg1.x = this.bg2.width + this.bg2.x;
-        }
-        if (this.bg2.x + this.bg2.width <= 0) {
-            this.bg2.x = this.bg1.width + this.bg1.x;
-        }
-        this.bg1.x -= GameData.speed;
-        this.bg2.x -= GameData.speed;
+        this.backgroud.update(timeStamp);
         return true;
     };
     return GameScene;

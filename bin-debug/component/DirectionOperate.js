@@ -13,7 +13,7 @@ var DirectionOperate = (function (_super) {
     function DirectionOperate() {
         var _this = _super.call(this) || this;
         _this._start = new egret.Point(GameData.OPERA_X, GameData.OPERA_Y);
-        _this.quicken = 5;
+        _this.quicken = GameData.BIRD_SPEED;
         _this.isSpeedUp = true;
         _this.area = new egret.Sprite();
         _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
@@ -51,7 +51,7 @@ var DirectionOperate = (function (_super) {
     };
     DirectionOperate.prototype.onTouchEnd = function (event) {
         this.orientationPath_png.alpha = 0;
-        this.quicken = 5;
+        this.quicken = GameData.BIRD_SPEED;
         egret.ticker.$stopTick(this.onMove, this);
         this.inFront();
     };
@@ -96,11 +96,11 @@ var DirectionOperate = (function (_super) {
      * 用于轮盘移动游戏对象
      */
     DirectionOperate.prototype.onMove = function (timeStamp) {
-        if (this.quicken >= 25) {
+        if (this.quicken >= GameData.BIRD_SPEED * 5) {
             this.isSpeedUp = false;
         }
         if (this.isSpeedUp) {
-            this.quicken = this.quicken + 5;
+            this.quicken = this.quicken + GameData.BIRD_SPEED;
         }
         var x = this.quicken * Math.cos(this.rotationMove * Math.PI / 180);
         var y = this.quicken * Math.sin(this.rotationMove * Math.PI / 180);

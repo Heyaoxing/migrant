@@ -25,6 +25,6 @@ class GameData {
     /**
      * 鸟的速度
      */
-    static BIRD_SPEED = 10;
+    static BIRD_SPEED = 3;
 
 }

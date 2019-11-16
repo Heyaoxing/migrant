@@ -22,6 +22,7 @@
 		"bin-debug/LoadingUI.js",
 		"bin-debug/controller/SceneController.js",
 		"bin-debug/gameData/GameData.js",
+		"bin-debug/gameObject/BackgroundObject.js",
 		"bin-debug/gameObject/Bird.js",
 		"bin-debug/AssetAdapter.js",
 		"bin-debug/Main.js",
